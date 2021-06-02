@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,4 +26,16 @@ public BookController(BookService bookService){
     model.addAttribute("books", books);
     return "books/all";
 }
+@GetMapping("/books/new")
+    String getForm(Model model){
+        Book book = new Book();
+        model.addAttribute("book", book);
+        return "books/new";
+    }
+
+    @PostMapping("/books/new")
+    public String addBook(@ModelAttribute Book book,Model model){
+    model.addAttribute("book",book);
+    return "redirect:/books";
+    }
 }
