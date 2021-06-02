@@ -7,7 +7,26 @@
 <header th:replace="fragments/header"></header>
 <section class="container"><h2>
   <h1 th:text="${title}"></h1>
-  <p th:text="${books}"></p>
-</h2></section>
+  <table class="table table-bordered">
+      <thead class="table table-bordered">
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+        </tr>
+      </thead>
+
+    <tbody>
+      <tr th:each="book: ${books}">
+        <th scope="row" th:text="${book.id}"></th>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.category}"></td>
+      </tr>
+    </tbody>
+    </table>
+  </h2>
+</section>
 <footer th:replace="fragments/footer"></footer>
 </body>
